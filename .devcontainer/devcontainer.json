@@ -1,0 +1,54 @@
+{
+    "dockerFile": "Dockerfile",
+    "containerUser": "${localEnv:USER}",
+    "remoteUser": "${localEnv:USER}",
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}/.ssh",
+            "target": "${localEnv:HOME}/.ssh",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.gitconfig",
+            "target": "${localEnv:HOME}/.gitconfig",
+            "type": "bind"
+        }
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils": {
+            "configureZshAsDefaultShell": true
+        },
+        "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+        "ghcr.io/devcontainers/features/github-cli": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "streetsidesoftware.code-spell-checker",
+                "github.vscode-github-actions",
+                "PKief.material-icon-theme",
+                "mutantdino.resourcemonitor",
+                "ms-azuretools.vscode-docker",
+                "yzhang.markdown-all-in-one",
+                "mhutchie.git-graph",
+                "vadimcn.vscode-lldb",
+                "fill-labs.dependi",
+                "rust-lang.rust-analyzer",
+                "Swellaby.vscode-rust-test-adapter",
+                "tamasfe.even-better-toml",
+                "Codeium.codeium"
+            ],
+            "settings": {
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.showUnlinkedFileNotification": false,
+                "editor.formatOnPaste": true,
+                "editor.formatOnSave": true,
+                "editor.formatOnSaveMode": "file",
+                "testExplorer.useNativeTesting": true,
+                "files.watcherExclude": {
+                    "**/target/**": true
+                }
+            }
+        }
+    }
+}
