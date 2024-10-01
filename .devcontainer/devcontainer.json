@@ -41,6 +41,13 @@
             "settings": {
                 "rust-analyzer.check.command": "clippy",
                 "rust-analyzer.showUnlinkedFileNotification": false,
+                "rust-analyzer.imports.preferNoStd": true,
+                "rust-analyzer.testExplorer": true,
+                "rust-analyzer.rustfmt.overrideCommand": [
+                    "bash",
+                    "-c",
+                    "$(rustup which --toolchain nightly rustfmt) --config unstable_features=true --config version='Two' --config wrap_comments=true --config imports_granularity='Crate' --config format_code_in_doc_comments=true --config format_strings=true --config reorder_impl_items=true --config group_imports='One' ${file}"
+                ],
                 "editor.formatOnPaste": true,
                 "editor.formatOnSave": true,
                 "editor.formatOnSaveMode": "file",
