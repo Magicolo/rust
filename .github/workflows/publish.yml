@@ -16,5 +16,5 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: docker build --tag ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest .
+      - run: docker build --tag ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest .devcontainer
       - run: docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
