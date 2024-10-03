@@ -2,6 +2,12 @@
     "dockerFile": "Dockerfile",
     "containerUser": "${localEnv:USER}",
     "remoteUser": "${localEnv:USER}",
+    "remoteEnv": {
+        "CARGO_TARGET_DIR": "/workspaces/rust/target"
+    },
+    "containerEnv": {
+        "CARGO_TARGET_DIR": "/workspaces/rust/target"
+    },
     "mounts": [
         {
             "source": "${localEnv:HOME}/.ssh",
@@ -36,7 +42,8 @@
                 "rust-lang.rust-analyzer",
                 "Swellaby.vscode-rust-test-adapter",
                 "tamasfe.even-better-toml",
-                "Codeium.codeium"
+                "Codeium.codeium",
+                "ryanluker.vscode-coverage-gutters"
             ],
             "settings": {
                 "rust-analyzer.check.command": "clippy",

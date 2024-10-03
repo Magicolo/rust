@@ -9,7 +9,5 @@ RUN rustup component add rustfmt clippy --toolchain stable
 RUN rustup component add rustfmt clippy --toolchain nightly
 RUN rustup update
 RUN curl --silent https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
-RUN cargo install cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks
+RUN cargo install cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-llvm-cov
 RUN chmod -R a+rwx /usr/local/rustup /usr/local/cargo
-ENV CARGO_TARGET_DIR=/workspaces/rust/target
-CMD cargo clean && sleep infinity
