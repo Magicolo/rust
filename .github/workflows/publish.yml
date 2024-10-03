@@ -18,6 +18,5 @@ jobs:
           password: ${{ github.token }}
       - uses: docker/build-push-action@v5
         with:
-          context: .devcontainer
           push: true
           tags: ghcr.io/magicolo/rust:latest
