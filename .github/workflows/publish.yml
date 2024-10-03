@@ -16,6 +16,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: REPOSITORY=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]') && echo "$REPOSITORY" >> $GITHUB_ENV
+      - run: REPOSITORY=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]') && echo "REPOSITORY=$REPOSITORY" >> $GITHUB_ENV
       - run: docker build --tag "ghcr.io/$REPOSITORY:latest" .devcontainer
       - run: docker push "ghcr.io/$REPOSITORY:latest"
