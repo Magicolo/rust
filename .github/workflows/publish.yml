@@ -25,5 +25,4 @@ jobs:
         with:
           target: ghcr.io/magicolo/rust:latest
           tag: slim
-          overwrite: true
-      - run: docker push ghcr.io/magicolo/rust:latest
+      - run: docker push ghcr.io/magicolo/rust --all-tags
