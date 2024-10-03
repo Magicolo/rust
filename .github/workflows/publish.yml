@@ -19,5 +19,10 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           context: .devcontainer
-          push: true
+          push: false
           tags: ghcr.io/magicolo/rust:latest
+      - uses: kitabisa/docker-slim-action@v1
+        with:
+          target: ghcr.io/magicolo/rust:latest
+          overwrite: true
+      - run: docker push ghcr.io/magicolo/rust:latest
