@@ -24,6 +24,6 @@ jobs:
       - uses: kitabisa/docker-slim-action@v1
         with:
           target: ghcr.io/magicolo/rust:latest
-          tag: latest
+          tag: slim
           overwrite: true
       - run: docker push ghcr.io/magicolo/rust:latest
