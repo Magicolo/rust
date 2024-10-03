@@ -20,7 +20,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: $(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          tags: ghcr.io/magicolo/rust:latest
       # - run: REPOSITORY=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]') && echo "REPOSITORY=$REPOSITORY" >> "${{ github.env }}"
       # - run: docker build --tag "ghcr.io/$REPOSITORY:latest" .
       # - run: docker push "ghcr.io/$REPOSITORY:latest"
