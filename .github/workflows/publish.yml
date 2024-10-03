@@ -17,5 +17,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - run: REPOSITORY=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-      - run: docker build --tag ghcr.io/$REPOSITORY:latest .devcontainer
-      - run: docker push ghcr.io/$REPOSITORY:latest
+      - run: docker build --tag "ghcr.io/$REPOSITORY:latest" .devcontainer
+      - run: docker push "ghcr.io/$REPOSITORY:latest"
