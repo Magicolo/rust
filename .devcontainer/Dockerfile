@@ -3,13 +3,13 @@ FROM rust
 RUN \
     apt update && \
     apt upgrade --yes && \
-    apt install --yes git git-lfs curl build-essential pkg-config cmake libssl-dev lldb google-perftools && \
+    apt install --yes git git-lfs curl jq awk xargs grep exa nano screen rsync build-essential linux-tools-common linux-tools-generic pkg-config make cmake libssl-dev lldb htop valgrind google-perftools && \
     rustup install stable nightly && \
-    rustup default stable && \
+    rustup default stable && \  
     rustup component add rustfmt clippy llvm-tools-preview --toolchain stable && \
-    rustup component add rustfmt clippy llvm-tools-preview --toolchain nightly && \
+    rustup component add rustfmt clippy miri llvm-tools-preview --toolchain nightly && \
     rustup update && \
-    cargo install cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-llvm-cov && \
+    cargo install cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-release cargo-bloat cargo-llvm-cov && \
     curl --silent https://raw.githubusercontent.com/nektos/act/master/install.sh | bash && \
     apt autoremove --yes && \
     apt clean --yes && \
