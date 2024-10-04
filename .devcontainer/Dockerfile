@@ -3,7 +3,7 @@ FROM rust
 RUN \
     apt update && \
     apt upgrade --yes && \
-    apt install --yes git git-lfs curl jq awk xargs grep exa nano screen rsync build-essential linux-tools-common linux-tools-generic pkg-config make cmake libssl-dev lldb htop valgrind google-perftools && \
+    apt install --yes git git-lfs curl jq gawk findutils grep exa nano screen rsync build-essential pkg-config make cmake libssl-dev lldb htop valgrind google-perftools && \
     rustup install stable nightly && \
     rustup default stable && \  
     rustup component add rustfmt clippy llvm-tools-preview --toolchain stable && \
