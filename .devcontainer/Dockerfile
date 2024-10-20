@@ -11,7 +11,7 @@ RUN \
     rustup default stable && \  
     rustup update && \
     cargo install cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-release cargo-bloat cargo-llvm-cov && \
-    cargo clean --release && \
+    cargo clean && \
     apt autoremove --yes && \
     apt clean --yes && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
