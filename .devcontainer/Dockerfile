@@ -10,8 +10,8 @@ RUN \
     rustup component add miri --toolchain nightly && \
     rustup default stable && \  
     rustup update && \
-    cargo install cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-release cargo-bloat cargo-llvm-cov && \
-    cargo clean && \
+    cargo install cargo-binstall && \
+    cargo binstall --no-confirm cargo-update cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-release cargo-bloat cargo-llvm-cov && \
     apt autoremove --yes && \
     apt clean --yes && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
