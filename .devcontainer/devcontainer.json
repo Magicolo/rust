@@ -42,8 +42,10 @@
                 "rust-lang.rust-analyzer",
                 "Swellaby.vscode-rust-test-adapter",
                 "tamasfe.even-better-toml",
-                "Codeium.codeium",
-                "ryanluker.vscode-coverage-gutters"
+                "ryanluker.vscode-coverage-gutters",
+                "usernamehw.errorlens",
+                "Gruntfuggly.todo-tree",
+                "GitHub.copilot"
             ],
             "settings": {
                 "rust-analyzer.check.command": "clippy",
@@ -61,7 +63,12 @@
                 "testExplorer.useNativeTesting": true,
                 "files.watcherExclude": {
                     "**/target/**": true
-                }
+                },
+                "errorLens.enabledDiagnosticLevels": [
+                    "error",
+                    "warning"
+                ],
+                "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)|todo!|unimplemented!"
             }
         }
     }
