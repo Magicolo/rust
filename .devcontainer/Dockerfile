@@ -1,7 +1,6 @@
 FROM rust
 
-RUN \
-    apt update && \
+RUN apt update && \
     apt upgrade --yes && \
     apt install --yes git git-lfs curl jq gawk findutils grep exa nano screen rsync build-essential pkg-config make cmake libssl-dev lldb htop valgrind google-perftools llvm && \
     curl --silent https://raw.githubusercontent.com/nektos/act/master/install.sh | bash && \
