@@ -22,3 +22,6 @@
 [submodule "entia"]
 	path = entia
 	url = ./entia
+[submodule "geno"]
+	path = geno
+	url = ./geno
