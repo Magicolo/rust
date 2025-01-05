@@ -25,3 +25,6 @@
 [submodule "geno"]
 	path = geno
 	url = ./geno
+[submodule "centris"]
+	path = centris
+	url = ./centris/
