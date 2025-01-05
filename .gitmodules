@@ -28,3 +28,6 @@
 [submodule "centris"]
 	path = centris
 	url = ./centris/
+[submodule "yum"]
+	path = yum
+	url = ./yum
