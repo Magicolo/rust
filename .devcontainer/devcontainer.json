@@ -46,7 +46,7 @@
                 "ryanluker.vscode-coverage-gutters",
                 "usernamehw.errorlens",
                 "Gruntfuggly.todo-tree",
-                "GitHub.copilot"
+                "Codeium.codeium"
             ],
             "settings": {
                 "rust-analyzer.check.command": "clippy",
@@ -56,7 +56,7 @@
                 "rust-analyzer.rustfmt.overrideCommand": [
                     "bash",
                     "-c",
-                    "$(rustup which --toolchain nightly rustfmt) --config unstable_features=true --config version='Two' --config wrap_comments=true --config imports_granularity='Crate' --config format_code_in_doc_comments=true --config format_strings=true --config reorder_impl_items=true --config group_imports='One' ${file}"
+                    "$(rustup which --toolchain nightly rustfmt) --edition 2024 --config unstable_features=true --config version='Two' --config wrap_comments=true --config imports_granularity='Crate' --config format_code_in_doc_comments=true --config format_strings=true --config reorder_impl_items=true --config group_imports='One' ${file}"
                 ],
                 "editor.formatOnPaste": true,
                 "editor.formatOnSave": true,
