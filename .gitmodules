@@ -31,3 +31,6 @@
 [submodule "yum"]
 	path = yum
 	url = ./yum
+[submodule "bag"]
+	path = bag
+	url = ./bag
