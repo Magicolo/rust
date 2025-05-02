@@ -1,36 +1,36 @@
 [submodule "checkito"]
 	path = checkito
-	url = ./checkito
+	url = ../checkito
 [submodule "armoire"]
 	path = armoire
-	url = ./armoire
+	url = ../armoire
 [submodule "elude"]
 	path = elude
-	url = ./elude
+	url = ../elude
 [submodule "multex"]
 	path = multex
-	url = ./multex
+	url = ../multex
 [submodule "orn"]
 	path = orn
-	url = ./orn
+	url = ../orn
 [submodule "scalp"]
 	path = scalp
-	url = ./scalp
+	url = ../scalp
 [submodule "that_bass"]
 	path = that_bass
-	url = ./that_bass
+	url = ../that_bass
 [submodule "entia"]
 	path = entia
-	url = ./entia
+	url = ../entia
 [submodule "geno"]
 	path = geno
-	url = ./geno
+	url = ../geno
 [submodule "centris"]
 	path = centris
-	url = ./centris/
+	url = ../centris/
 [submodule "yum"]
 	path = yum
-	url = ./yum
+	url = ../yum
 [submodule "bag"]
 	path = bag
-	url = ./bag
+	url = ../bag
