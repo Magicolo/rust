@@ -1,5 +1,5 @@
 {
-    "dockerFile": "Dockerfile",
+    "image": "ghcr.io/magicolo/rust",
     "containerUser": "${localEnv:USER}",
     "remoteUser": "${localEnv:USER}",
     "remoteEnv": {
