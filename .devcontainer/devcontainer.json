@@ -1,11 +1,17 @@
 {
-    "image": "ghcr.io/magicolo/rust:latest",
+    "dockerFile": "Dockerfile",
     "containerUser": "${localEnv:USER}",
     "remoteUser": "${localEnv:USER}",
     "remoteEnv": {
+        // General
+        "COMPOSE_BAKE": "true",
+        // Rust
         "CARGO_TARGET_DIR": "/workspaces/rust/target"
     },
     "containerEnv": {
+        // General
+        "COMPOSE_BAKE": "true",
+        // Rust
         "CARGO_TARGET_DIR": "/workspaces/rust/target"
     },
     "mounts": [
@@ -18,46 +24,44 @@
             "source": "${localEnv:HOME}/.gitconfig",
             "target": "${localEnv:HOME}/.gitconfig",
             "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.docker",
+            "target": "${localEnv:HOME}/.docker",
+            "type": "bind"
         }
     ],
     "features": {
-        "ghcr.io/devcontainers/features/common-utils": {
-            "configureZshAsDefaultShell": true
-        },
-        "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
-        "ghcr.io/devcontainers/features/github-cli": {}
+        "ghcr.io/devcontainers/features/common-utils": {},
+        "ghcr.io/devcontainers/features/docker-outside-of-docker": {}
     },
     "customizations": {
         "vscode": {
             "extensions": [
+                // General
                 "streetsidesoftware.code-spell-checker",
-                "github.vscode-github-actions",
-                "PKief.material-icon-theme",
                 "mutantdino.resourcemonitor",
                 "ms-azuretools.vscode-docker",
                 "yzhang.markdown-all-in-one",
                 "humao.rest-client",
                 "mhutchie.git-graph",
-                "vadimcn.vscode-lldb",
-                "fill-labs.dependi",
-                "rust-lang.rust-analyzer",
-                "Swellaby.vscode-rust-test-adapter",
-                "tamasfe.even-better-toml",
                 "ryanluker.vscode-coverage-gutters",
                 "usernamehw.errorlens",
                 "Gruntfuggly.todo-tree",
-                "Codeium.codeium"
+                "mechatroner.rainbow-csv",
+                "dotenv.dotenv-vscode",
+                "Codeium.codeium",
+                // Rust
+                "tamasfe.even-better-toml",
+                "vadimcn.vscode-lldb",
+                "rust-lang.rust-analyzer",
+                "Swellaby.vscode-rust-test-adapter",
+                "fill-labs.dependi"
             ],
             "settings": {
-                "rust-analyzer.check.command": "clippy",
-                "rust-analyzer.showUnlinkedFileNotification": false,
-                "rust-analyzer.imports.preferNoStd": true,
-                "rust-analyzer.testExplorer": true,
-                "rust-analyzer.rustfmt.overrideCommand": [
-                    "bash",
-                    "-c",
-                    "$(rustup which --toolchain nightly rustfmt) --edition 2024 --config unstable_features=true --config version='Two' --config wrap_comments=true --config imports_granularity='Crate' --config format_code_in_doc_comments=true --config format_strings=true --config reorder_impl_items=true --config group_imports='One' ${file}"
-                ],
+                // General
+                "dev.containers.dockerCredentialHelper": false,
+                "dev.containers.copyGitConfig": false,
                 "editor.formatOnPaste": true,
                 "editor.formatOnSave": true,
                 "editor.formatOnSaveMode": "file",
@@ -69,7 +73,18 @@
                     "error",
                     "warning"
                 ],
-                "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)|todo!|unimplemented!"
+                "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)|todo!|unimplemented!",
+                // Rust
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.showUnlinkedFileNotification": false,
+                "rust-analyzer.imports.preferNoStd": true,
+                "rust-analyzer.testExplorer": true,
+                "rust-analyzer.rustfmt.overrideCommand": [
+                    "bash",
+                    "-c",
+                    "$(rustup which --toolchain nightly rustfmt) --edition 2024 --style-edition 2024 --unstable-features --config wrap_comments=true --config imports_granularity='Crate' --config format_code_in_doc_comments=true --config reorder_impl_items=true --config group_imports='One' ${file}"
+                ],
+                "rust-analyzer.rustfmt.rangeFormatting.enable": true
             }
         }
     }
