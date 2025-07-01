@@ -9,27 +9,10 @@ RUN apt update && \
     apt clean --yes && \
     rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Setup git credential manager.
-RUN REPOSITORY="git-ecosystem/git-credential-manager" && \
-    VERSION=$(curl --location --silent --show-error --fail "https://api.github.com/repos/${REPOSITORY}/releases/latest" | jq --raw-output '.tag_name') && \
-    curl --location --silent --show-error --fail "https://github.com/${REPOSITORY}/releases/download/${VERSION}/gcm-linux_amd64.${VERSION#v}.tar.gz" | \
-    tar --extract --gzip --mode=0755 --directory="/usr/local/bin" --exclude=NOTICE && \
-    git credential-manager configure
-
-# Setup git credential oauth.
-RUN REPOSITORY="hickford/git-credential-oauth" && \
-    VERSION=$(curl --location --silent --show-error --fail "https://api.github.com/repos/${REPOSITORY}/releases/latest" | jq --raw-output '.tag_name') && \
-    curl --location --silent --show-error --fail "https://github.com/${REPOSITORY}/releases/download/${VERSION}/git-credential-oauth_${VERSION#v}_linux_amd64.tar.gz" | \
-    tar --extract --gzip --mode=0755 --directory="/usr/local/bin" --exclude=LICENSE.txt --exclude=README.md && \
-    git credential-oauth configure
-
 # Setup git configuration.
 RUN git config --system pull.rebase true && \
-    git config --system --add credential.helper "cache --timeout 7200" && \
-    git config --system --add credential.helper oauth && \
     git config --system gpg.format ssh && \
-    git config --system commit.gpgsign true && \
-    git config --system uploadpack.allowFilter true
+    git config --system commit.gpgsign true
 
 # Setup act.
 RUN REPOSITORY="nektos/act" && \
