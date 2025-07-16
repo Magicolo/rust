@@ -55,7 +55,6 @@
                 "mechatroner.rainbow-csv",
                 "dotenv.dotenv-vscode",
                 "fill-labs.dependi",
-                "Codeium.codeium",
                 // Rust
                 "tamasfe.even-better-toml",
                 "vadimcn.vscode-lldb",
