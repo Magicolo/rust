@@ -1,7 +1,7 @@
 {
     "image": "ghcr.io/magicolo/rust",
-    "containerUser": "${localEnv:USER}",
-    "remoteUser": "${localEnv:USER}",
+    "containerUser": "ubuntu",
+    "remoteUser": "ubuntu",
     "remoteEnv": {
         // General
         "COMPOSE_BAKE": "1",
@@ -21,17 +21,17 @@
     "mounts": [
         {
             "source": "${localEnv:HOME}/.ssh",
-            "target": "${localEnv:HOME}/.ssh",
+            "target": "/home/ubuntu/.ssh",
             "type": "bind"
         },
         {
             "source": "${localEnv:HOME}/.gitconfig",
-            "target": "${localEnv:HOME}/.gitconfig",
+            "target": "/home/ubuntu/.gitconfig",
             "type": "bind"
         },
         {
             "source": "${localEnv:HOME}/.docker",
-            "target": "${localEnv:HOME}/.docker",
+            "target": "/home/ubuntu/.docker",
             "type": "bind"
         }
     ],
