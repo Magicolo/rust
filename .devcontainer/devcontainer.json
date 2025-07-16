@@ -1,33 +1,37 @@
 {
     "image": "ghcr.io/magicolo/rust",
-    "containerUser": "ubuntu",
-    "remoteUser": "ubuntu",
+    "containerUser": "${localEnv:USER}",
+    "remoteUser": "${localEnv:USER}",
     "remoteEnv": {
         // General
-        "COMPOSE_BAKE": "true",
+        "COMPOSE_BAKE": "1",
+        "DOCKER_BUILDKIT": "1",
         // Rust
-        "CARGO_TARGET_DIR": "/workspaces/rust/target"
+        "CARGO_TARGET_DIR": "/workspaces/rust/target",
+        "RUST_TEST_NOCAPTURE": "1"
     },
     "containerEnv": {
         // General
-        "COMPOSE_BAKE": "true",
+        "COMPOSE_BAKE": "1",
+        "DOCKER_BUILDKIT": "1",
         // Rust
-        "CARGO_TARGET_DIR": "/workspaces/rust/target"
+        "CARGO_TARGET_DIR": "/workspaces/rust/target",
+        "RUST_TEST_NOCAPTURE": "1"
     },
     "mounts": [
         {
             "source": "${localEnv:HOME}/.ssh",
-            "target": "/home/ubuntu/.ssh",
+            "target": "${localEnv:HOME}/.ssh",
             "type": "bind"
         },
         {
             "source": "${localEnv:HOME}/.gitconfig",
-            "target": "/home/ubuntu/.gitconfig",
+            "target": "${localEnv:HOME}/.gitconfig",
             "type": "bind"
         },
         {
             "source": "${localEnv:HOME}/.docker",
-            "target": "/home/ubuntu/.docker",
+            "target": "${localEnv:HOME}/.docker",
             "type": "bind"
         }
     ],
@@ -50,13 +54,13 @@
                 "Gruntfuggly.todo-tree",
                 "mechatroner.rainbow-csv",
                 "dotenv.dotenv-vscode",
+                "fill-labs.dependi",
                 "Codeium.codeium",
                 // Rust
                 "tamasfe.even-better-toml",
                 "vadimcn.vscode-lldb",
                 "rust-lang.rust-analyzer",
-                "Swellaby.vscode-rust-test-adapter",
-                "fill-labs.dependi"
+                "Swellaby.vscode-rust-test-adapter"
             ],
             "settings": {
                 // General

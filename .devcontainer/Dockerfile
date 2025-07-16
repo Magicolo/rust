@@ -3,21 +3,15 @@ FROM ubuntu
 # Setup general.
 RUN apt update && \
     apt upgrade --yes && \
-    apt install --no-install-recommends --yes ca-certificates git git-lfs curl jq gawk findutils grep nano screen rsync apt-utils dpkg gettext procps build-essential pkg-config make cmake libssl-dev lldb htop valgrind google-perftools llvm 7zip poppler-utils fd-find ripgrep fzf zoxide parallel software-properties-common pulseaudio alsa-utils libasound2-dev llvm-dev libclang-dev clang libopencv-dev && \
+    apt install --no-install-recommends --yes ca-certificates git git-lfs curl jq gawk findutils grep nano screen rsync apt-utils dpkg gettext procps build-essential pkg-config make cmake libssl-dev lldb htop valgrind google-perftools llvm 7zip poppler-utils fd-find ripgrep fzf zoxide parallel software-properties-common pulseaudio alsa-utils libasound2-dev llvm-dev libclang-dev clang libopencv-dev gnupg gpg openssl && \
     update-ca-certificates && \
     apt autoremove --yes && \
     apt clean --yes && \
     rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Setup git configuration.
-RUN git config --system pull.rebase true && \
-    git config --system gpg.format ssh && \
-    git config --system commit.gpgsign true
-
 # Setup act.
-RUN REPOSITORY="nektos/act" && \
-    VERSION=$(curl --location --silent --show-error --fail "https://api.github.com/repos/${REPOSITORY}/releases/latest" | jq --raw-output '.tag_name') && \
-    curl --location --silent --show-error --fail "https://github.com/${REPOSITORY}/releases/download/${VERSION}/act_Linux_x86_64.tar.gz" | \
+RUN VERSION=$(curl --location --silent --show-error --fail "https://api.github.com/repos/nektos/act/releases/latest" | jq --raw-output '.tag_name') && \
+    curl --location --silent --show-error --fail "https://github.com/nektos/act/releases/download/${VERSION}/act_Linux_x86_64.tar.gz" | \
     tar --extract --gzip --mode=0755 --directory="/usr/local/bin" --exclude=LICENSE --exclude=README.md
 
 # Setup rust.
