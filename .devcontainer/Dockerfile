@@ -36,5 +36,5 @@ RUN REPOSITORY="cargo-bins/cargo-binstall" && \
     curl --location --silent --show-error --fail "https://github.com/${REPOSITORY}/releases/download/${VERSION}/cargo-binstall-x86_64-unknown-linux-gnu.tgz" | \
     tar --extract --gzip --mode=0755 --directory="/usr/local/bin" && \
     cargo binstall cargo-watch cargo-update cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-release cargo-nextest cargo-bloat cargo-llvm-cov taplo-cli && \
-    cargo install --git "https://github.com/chevdor/tera-cli" \
+    cargo install --git "https://github.com/chevdor/tera-cli" && \
     chmod --recursive 0777 "$CARGO_HOME"
