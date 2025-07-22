@@ -28,7 +28,7 @@ RUN curl --location --silent --show-error --fail "https://sh.rustup.rs" | sh -s 
     rustup toolchain install 1.70 1.65 1.63 1.61 1.60 --profile minimal && \
     rustup component add miri --toolchain nightly && \
     rustup default stable && \
-    for name in $(rustup toolchain list --quiet); do rustup run "$name" cargo fetch; done;
+    for name in $(rustup toolchain list --quiet); do rustup run "$name" cargo search --limit 1; done;
 
 # Setup cargo.
 RUN VERSION=$(curl --location --silent --show-error --fail "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/latest" | jq --raw-output '.tag_name') && \
