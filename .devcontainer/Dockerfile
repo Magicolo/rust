@@ -34,6 +34,6 @@ RUN curl --location --silent --show-error --fail "https://sh.rustup.rs" | sh -s 
 RUN VERSION=$(curl --location --silent --show-error --fail "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/latest" | jq --raw-output '.tag_name') && \
     curl --location --silent --show-error --fail "https://github.com/cargo-bins/cargo-binstall/releases/download/${VERSION}/cargo-binstall-x86_64-unknown-linux-gnu.tgz" | \
     tar --extract --gzip --mode=0755 --directory="/usr/local/bin" && \
-    cargo binstall cargo-watch cargo-update cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-release cargo-nextest cargo-bloat cargo-llvm-cov taplo-cli && \
+    cargo binstall cargo-watch cargo-update cargo-expand cargo-audit cargo-msrv cargo-hack cargo-semver-checks cargo-release cargo-nextest cargo-bloat cargo-llvm-cov cargo-mutants taplo-cli && \
     cargo install --git "https://github.com/chevdor/tera-cli" && \
     chmod --recursive 0777 "$CARGO_HOME"
