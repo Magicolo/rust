@@ -25,7 +25,7 @@ ENV CARGO_HOME="/usr/local/cargo"
 ENV PATH="${PATH}:${CARGO_HOME}/bin"
 RUN curl --location --silent --show-error --fail "https://sh.rustup.rs" | sh -s -- -y --default-toolchain none && \
     rustup toolchain install stable nightly --component rustfmt --component llvm-tools-preview --component rust-src --component clippy && \
-    rustup toolchain install 1.79 1.75 1.70 1.65 1.64 1.63 1.62 1.61 1.60 --profile minimal && \
+    rustup toolchain install 1.79 1.75 1.70 1.68 1.65 1.64 1.63 1.62 1.61 1.60 --profile minimal && \
     rustup component add miri --toolchain nightly && \
     rustup default stable && \
     for name in $(rustup toolchain list --quiet); do rustup run "$name" cargo search --limit 1; done;
