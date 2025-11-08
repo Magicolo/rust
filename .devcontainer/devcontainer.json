@@ -44,7 +44,7 @@
     ],
     "features": {
         "ghcr.io/devcontainers/features/common-utils": {},
-        "ghcr.io/devcontainers/features/docker-outside-of-docker": {}
+        "ghcr.io/devcontainers/features/docker-in-docker": {}
     },
     "customizations": {
         "vscode": {
@@ -101,3 +101,4 @@
         }
     }
 }
+
