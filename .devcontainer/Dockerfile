@@ -14,10 +14,10 @@ RUN VERSION=$(curl --location --silent --show-error --fail "https://api.github.c
     curl --location --silent --show-error --fail "https://github.com/nektos/act/releases/download/${VERSION}/act_Linux_x86_64.tar.gz" | \
     tar --extract --gzip --mode=0755 --directory="/usr/local/bin" --exclude=LICENSE --exclude=README.md
 
-# Setup gemini.
+# Setup gemini, codex, claude, copilot.
 RUN apt update && \ 
     apt install --no-install-recommends --no-install-suggests --auto-remove --upgrade --yes npm && \
-    npm install --global @google/gemini-cli
+    npm install --global @google/gemini-cli @openai/codex @anthropic-ai/claude-code @github/copilot
 
 # Setup rust.
 ENV RUSTUP_HOME="/usr/local/rustup"
