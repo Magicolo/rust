@@ -1,24 +1,17 @@
 {
-    "image": "ghcr.io/magicolo/rust",
-    "containerUser": "ubuntu",
-    "remoteUser": "ubuntu",
+    "name": "rust",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "develop",
+    "workspaceFolder": "/project",
     "remoteEnv": {
         // General
         "COMPOSE_BAKE": "1",
-        "DOCKER_BUILDKIT": "1",
-        // Rust
-        "RUST_TEST_NOCAPTURE": "1",
-        "RUST_BACKTRACE": "1",
-        "CARGO_TARGET_DIR": "/home/ubuntu/.rust/target"
+        "DOCKER_BUILDKIT": "1"
     },
     "containerEnv": {
         // General
         "COMPOSE_BAKE": "1",
-        "DOCKER_BUILDKIT": "1",
-        // Rust
-        "RUST_TEST_NOCAPTURE": "1",
-        "RUST_BACKTRACE": "1",
-        "CARGO_TARGET_DIR": "/home/ubuntu/.rust/target"
+        "DOCKER_BUILDKIT": "1"
     },
     "mounts": [
         {
@@ -27,8 +20,18 @@
             "type": "bind"
         },
         {
+            "source": "${localEnv:HOME}/.rust",
+            "target": "/home/ubuntu/.rust",
+            "type": "bind"
+        },
+        {
             "source": "${localEnv:HOME}/.gitconfig",
             "target": "/home/ubuntu/.gitconfig",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.config",
+            "target": "/home/ubuntu/.config",
             "type": "bind"
         },
         {
@@ -37,15 +40,31 @@
             "type": "bind"
         },
         {
-            "source": "${localEnv:HOME}/.rust",
-            "target": "/home/ubuntu/.rust",
+            "source": "${localEnv:HOME}/.claude",
+            "target": "/home/ubuntu/.claude",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.copilot",
+            "target": "/home/ubuntu/.copilot",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.hermes",
+            "target": "/home/ubuntu/.hermes",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.gemini",
+            "target": "/home/ubuntu/.gemini",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.omp",
+            "target": "/home/ubuntu/.omp",
             "type": "bind"
         }
     ],
-    "features": {
-        "ghcr.io/devcontainers/features/common-utils": {},
-        "ghcr.io/devcontainers/features/docker-in-docker": {}
-    },
     "customizations": {
         "vscode": {
             "extensions": [
@@ -53,17 +72,19 @@
                 "streetsidesoftware.code-spell-checker",
                 "mutantdino.resourcemonitor",
                 "ms-azuretools.vscode-docker",
+                "docker.docker",
                 "yzhang.markdown-all-in-one",
                 "humao.rest-client",
                 "mhutchie.git-graph",
+                "huizhou.githd",
                 "ryanluker.vscode-coverage-gutters",
                 "usernamehw.errorlens",
                 "Gruntfuggly.todo-tree",
                 "mechatroner.rainbow-csv",
                 "dotenv.dotenv-vscode",
                 "fill-labs.dependi",
-                "github.vscode-github-actions",
-                "Codeium.codeium",
+                "GitHub.copilot-chat",
+                "ms-kubernetes-tools.vscode-kubernetes-tools",
                 // Rust
                 "tamasfe.even-better-toml",
                 "vadimcn.vscode-lldb",
@@ -88,17 +109,121 @@
                 "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)|todo!|unimplemented!",
                 // Rust
                 "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.cargo.extraEnv": {
+                    "RUSTUP_TOOLCHAIN": "nightly"
+                },
                 "rust-analyzer.showUnlinkedFileNotification": false,
                 "rust-analyzer.imports.preferNoStd": true,
                 "rust-analyzer.testExplorer": true,
-                "rust-analyzer.rustfmt.overrideCommand": [
-                    "bash",
-                    "-c",
-                    "$(rustup which --toolchain nightly rustfmt) --edition 2024 --style-edition 2024 --unstable-features --config wrap_comments=true --config imports_granularity='Crate' --config format_code_in_doc_comments=true --config reorder_impl_items=true --config group_imports='One' ${file}"
-                ],
                 "rust-analyzer.rustfmt.rangeFormatting.enable": true
             }
         }
+    },
+    "initializeCommand": {
+        "folder": "mkdir --parents ${localEnv:HOME}/.ssh ${localEnv:HOME}/.rust ${localEnv:HOME}/.config ${localEnv:HOME}/.docker ${localEnv:HOME}/.claude ${localEnv:HOME}/.gemini ${localEnv:HOME}/.codex ${localEnv:HOME}/.copilot ${localEnv:HOME}/.omp ${localEnv:HOME}/.hermes",
+        "file": "touch ${localEnv:HOME}/.gitconfig environment/secrets.env"
     }
 }
-
+// {
+//     "image": "ghcr.io/magicolo/rust",
+//     "containerUser": "ubuntu",
+//     "remoteUser": "ubuntu",
+//     "remoteEnv": {
+//         // General
+//         "COMPOSE_BAKE": "1",
+//         "DOCKER_BUILDKIT": "1",
+//         // Rust
+//         "RUST_TEST_NOCAPTURE": "1",
+//         "RUST_BACKTRACE": "1",
+//         "CARGO_TARGET_DIR": "/home/ubuntu/.rust/target"
+//     },
+//     "containerEnv": {
+//         // General
+//         "COMPOSE_BAKE": "1",
+//         "DOCKER_BUILDKIT": "1",
+//         // Rust
+//         "RUST_TEST_NOCAPTURE": "1",
+//         "RUST_BACKTRACE": "1",
+//         "CARGO_TARGET_DIR": "/home/ubuntu/.rust/target"
+//     },
+//     "mounts": [
+//         {
+//             "source": "${localEnv:HOME}/.ssh",
+//             "target": "/home/ubuntu/.ssh",
+//             "type": "bind"
+//         },
+//         {
+//             "source": "${localEnv:HOME}/.gitconfig",
+//             "target": "/home/ubuntu/.gitconfig",
+//             "type": "bind"
+//         },
+//         {
+//             "source": "${localEnv:HOME}/.docker",
+//             "target": "/home/ubuntu/.docker",
+//             "type": "bind"
+//         },
+//         {
+//             "source": "${localEnv:HOME}/.rust",
+//             "target": "/home/ubuntu/.rust",
+//             "type": "bind"
+//         }
+//     ],
+//     "features": {
+//         "ghcr.io/devcontainers/features/common-utils": {},
+//         "ghcr.io/devcontainers/features/docker-in-docker": {}
+//     },
+//     "customizations": {
+//         "vscode": {
+//             "extensions": [
+//                 // General
+//                 "streetsidesoftware.code-spell-checker",
+//                 "mutantdino.resourcemonitor",
+//                 "ms-azuretools.vscode-docker",
+//                 "yzhang.markdown-all-in-one",
+//                 "humao.rest-client",
+//                 "mhutchie.git-graph",
+//                 "ryanluker.vscode-coverage-gutters",
+//                 "usernamehw.errorlens",
+//                 "Gruntfuggly.todo-tree",
+//                 "mechatroner.rainbow-csv",
+//                 "dotenv.dotenv-vscode",
+//                 "fill-labs.dependi",
+//                 "github.vscode-github-actions",
+//                 "Codeium.codeium",
+//                 // Rust
+//                 "tamasfe.even-better-toml",
+//                 "vadimcn.vscode-lldb",
+//                 "rust-lang.rust-analyzer",
+//                 "Swellaby.vscode-rust-test-adapter"
+//             ],
+//             "settings": {
+//                 // General
+//                 "dev.containers.dockerCredentialHelper": false,
+//                 "dev.containers.copyGitConfig": false,
+//                 "editor.formatOnPaste": true,
+//                 "editor.formatOnSave": true,
+//                 "editor.formatOnSaveMode": "file",
+//                 "testExplorer.useNativeTesting": true,
+//                 "files.watcherExclude": {
+//                     "**/target/**": true
+//                 },
+//                 "errorLens.enabledDiagnosticLevels": [
+//                     "error",
+//                     "warning"
+//                 ],
+//                 "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)|todo!|unimplemented!",
+//                 // Rust
+//                 "rust-analyzer.check.command": "clippy",
+//                 "rust-analyzer.showUnlinkedFileNotification": false,
+//                 "rust-analyzer.imports.preferNoStd": true,
+//                 "rust-analyzer.testExplorer": true,
+//                 "rust-analyzer.rustfmt.overrideCommand": [
+//                     "bash",
+//                     "-c",
+//                     "$(rustup which --toolchain nightly rustfmt) --edition 2024 --style-edition 2024 --unstable-features --config wrap_comments=true --config imports_granularity='Crate' --config format_code_in_doc_comments=true --config reorder_impl_items=true --config group_imports='One' ${file}"
+//                 ],
+//                 "rust-analyzer.rustfmt.rangeFormatting.enable": true
+//             }
+//         }
+//     }
+// }

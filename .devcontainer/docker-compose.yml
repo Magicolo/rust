@@ -1,0 +1,9 @@
+name: rust
+
+services:
+  develop:
+    image: ghcr.io/magicolo/rust
+    entrypoint: "sh -c 'trap : TERM INT; sleep infinity & wait'"
+    working_dir: /project
+    volumes:
+      - ../:/project
