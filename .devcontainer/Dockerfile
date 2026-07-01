@@ -25,9 +25,8 @@ RUN apt update && \
     pip install --break-system-packages --ignore-installed --no-cache-dir --upgrade basedpyright taplo schemathesis
 
 # Setup agents.
-RUN npm install --global @google/gemini-cli @kilocode/cli @oh-my-pi/pi-coding-agent cline && \
+RUN npm install --global @google/gemini-cli @kilocode/cli @oh-my-pi/pi-coding-agent cline @openai/codex && \
     curl --location --silent --show-error --fail "https://gh.io/copilot-install" | bash && \
-    curl --location --silent --show-error --fail "https://chatgpt.com/codex/install.sh" | sh && \
     curl --location --silent --show-error --fail "https://claude.ai/install.sh" | bash && \
     curl --location --silent --show-error --fail "https://opencode.ai/install" | bash && \
     curl --location --silent --show-error --fail "https://pi.dev/install.sh" | sh && \
