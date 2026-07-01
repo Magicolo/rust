@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Setup general.
 RUN apt update && \
     apt upgrade --yes && \
-    apt install --no-install-recommends --no-install-suggests --auto-remove --upgrade --yes ca-certificates sudo curl grep git git-lfs jq yq gawk rsync findutils apt-utils nano screen gettext dpkg procps software-properties-common build-essential pkg-config htop llvm lldb libssl-dev libatomic1 gnupg gpg poppler-utils openssl openssh-client make cmake valgrind libgoogle-perftools-dev llvm-dev libclang-dev libopencv-dev clang parallel pulseaudio alsa-utils libasound2-dev lsb-release ripgrep fd-find fzf bat tree zip unzip eza zoxide duf btop btm hyperfine git-delta sd && \
+    apt install --no-install-recommends --no-install-suggests --auto-remove --upgrade --yes ca-certificates sudo curl grep git git-lfs jq yq gawk rsync findutils apt-utils nano screen gettext dpkg procps software-properties-common build-essential pkg-config htop llvm lldb libssl-dev libatomic1 gnupg gpg poppler-utils openssl openssh-client make cmake valgrind libgoogle-perftools-dev llvm-dev libclang-dev libopencv-dev clang parallel pulseaudio alsa-utils libasound2-dev lsb-release ripgrep fd-find fzf bat tree zip unzip eza zoxide duf btop btm hyperfine git-delta sd httpie shellcheck && \
     ln --symbolic --force /usr/bin/fdfind /usr/local/bin/fd && \
     ln --symbolic --force /usr/bin/batcat /usr/local/bin/bat && \
     ln --symbolic --force /usr/bin/btm /usr/local/bin/bottom && \
@@ -15,23 +15,23 @@ RUN apt update && \
     rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Setup node.
-RUN curl --fail --silent --show-error --location https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt install --yes nodejs && \
+RUN curl --location --silent --show-error --fail "https://deb.nodesource.com/setup_lts.x" | bash - && \
+    apt install --no-install-recommends --yes nodejs && \
     npm install --global typescript typescript-language-server vscode-langservers-extracted prettier eslint-config-prettier eslint-plugin-import eslint-plugin-prettier eslint-plugin-react eslint-plugin-simple-import-sort license-checker @stryker-mutator/core
 
 # Setup python.
 RUN apt update && \
-    apt install --no-install-recommends --yes python3 python3-pip python3-venv && \
+    apt install --no-install-recommends --yes python3 python3-pip python3-venv pipx && \
     pip install --break-system-packages --ignore-installed --no-cache-dir --upgrade basedpyright taplo schemathesis
 
 # Setup agents.
 RUN npm install --global @google/gemini-cli @kilocode/cli @oh-my-pi/pi-coding-agent cline && \
-    curl --fail --silent --show-error --location "https://gh.io/copilot-install" | bash && \
-    curl --fail --silent --show-error --location "https://chatgpt.com/codex/install.sh" | sh && \
-    curl --fail --silent --show-error --location "https://claude.ai/install.sh" | bash && \
-    curl --fail --silent --show-error --location "https://opencode.ai/install" | bash && \
-    curl --fail --silent --show-error --location "https://pi.dev/install.sh" | sh && \
-    curl --fail --silent --show-error --location "https://hermes-agent.nousresearch.com/install.sh" | bash
+    curl --location --silent --show-error --fail "https://gh.io/copilot-install" | bash && \
+    curl --location --silent --show-error --fail "https://chatgpt.com/codex/install.sh" | sh && \
+    curl --location --silent --show-error --fail "https://claude.ai/install.sh" | bash && \
+    curl --location --silent --show-error --fail "https://opencode.ai/install" | bash && \
+    curl --location --silent --show-error --fail "https://pi.dev/install.sh" | sh && \
+    curl --location --silent --show-error --fail "https://hermes-agent.nousresearch.com/install.sh" | bash
 
 # Setup gh.
 RUN mkdir --parents --mode 0755 "/etc/apt/keyrings" \
@@ -84,6 +84,8 @@ RUN VERSION=$(curl --location --silent --show-error --fail "https://api.github.c
 
 # Setup rust.
 ENV RUSTUP_HOME="/usr/local/rustup"
+ENV RUST_BACKTRACE="1"
+ENV RUST_TEST_NOCAPTURE="1"
 ENV CARGO_HOME="/usr/local/cargo"
 ENV PATH="${PATH}:${CARGO_HOME}/bin"
 RUN curl --location --silent --show-error --fail "https://sh.rustup.rs" | sh -s -- -y --default-toolchain none && \
@@ -93,10 +95,12 @@ RUN curl --location --silent --show-error --fail "https://sh.rustup.rs" | sh -s 
 RUN VERSION=$(curl --location --silent --show-error --fail "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/latest" | jq --raw-output '.tag_name') && \
     curl --location --silent --show-error --fail "https://github.com/cargo-bins/cargo-binstall/releases/download/${VERSION}/cargo-binstall-x86_64-unknown-linux-gnu.tgz" | \
     tar --extract --gzip --mode=0755 --directory="/usr/local/bin"
-RUN cargo binstall --secure --no-confirm cargo-nextest cargo-watch cargo-update cargo-edit cargo-expand cargo-audit cargo-msrv cargo-hack cargo-bloat cargo-llvm-cov cargo-license cargo-deny cargo-dupes cargo-semver-checks cargo-release cargo-mutants taplo-cli && \
+RUN cargo binstall --secure --no-confirm cargo-nextest cargo-watch cargo-update cargo-edit cargo-expand cargo-audit cargo-msrv cargo-hack cargo-bloat cargo-llvm-cov cargo-license cargo-deny cargo-dupes cargo-semver-checks cargo-release cargo-mutants taplo-cli lazygit just difftastic ruff starship && \
     chmod --recursive 0777 "$CARGO_HOME"
 
-ENV RUST_BACKTRACE="1"
-ENV RUST_TEST_NOCAPTURE="1"
+# Setup user.
+RUN useradd --create-home --shell /bin/bash --groups sudo ubuntu && \
+    echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/ubuntu
+USER ubuntu
 ENV CARGO_TARGET_DIR="/home/ubuntu/.rust/target"
 RUN trivy image --download-db-only

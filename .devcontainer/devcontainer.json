@@ -63,6 +63,26 @@
             "source": "${localEnv:HOME}/.omp",
             "target": "/home/ubuntu/.omp",
             "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.codex",
+            "target": "/home/ubuntu/.codex",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.opencode",
+            "target": "/home/ubuntu/.opencode",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.pi",
+            "target": "/home/ubuntu/.pi",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.kilocode",
+            "target": "/home/ubuntu/.kilocode",
+            "type": "bind"
         }
     ],
     "customizations": {
@@ -114,7 +134,7 @@
         }
     },
     "initializeCommand": {
-        "folder": "mkdir --parents ${localEnv:HOME}/.ssh ${localEnv:HOME}/.rust ${localEnv:HOME}/.config ${localEnv:HOME}/.docker ${localEnv:HOME}/.claude ${localEnv:HOME}/.gemini ${localEnv:HOME}/.codex ${localEnv:HOME}/.copilot ${localEnv:HOME}/.omp ${localEnv:HOME}/.hermes",
+        "folder": "mkdir --parents ${localEnv:HOME}/.ssh ${localEnv:HOME}/.rust ${localEnv:HOME}/.config ${localEnv:HOME}/.docker ${localEnv:HOME}/.claude ${localEnv:HOME}/.gemini ${localEnv:HOME}/.codex ${localEnv:HOME}/.copilot ${localEnv:HOME}/.omp ${localEnv:HOME}/.hermes ${localEnv:HOME}/.opencode ${localEnv:HOME}/.pi ${localEnv:HOME}/.kilocode",
         "file": "touch ${localEnv:HOME}/.gitconfig environment/secrets.env"
     }
 }
