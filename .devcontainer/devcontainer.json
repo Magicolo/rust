@@ -38,51 +38,6 @@
             "source": "${localEnv:HOME}/.docker",
             "target": "/home/ubuntu/.docker",
             "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.claude",
-            "target": "/home/ubuntu/.claude",
-            "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.copilot",
-            "target": "/home/ubuntu/.copilot",
-            "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.hermes",
-            "target": "/home/ubuntu/.hermes",
-            "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.gemini",
-            "target": "/home/ubuntu/.gemini",
-            "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.omp",
-            "target": "/home/ubuntu/.omp",
-            "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.codex",
-            "target": "/home/ubuntu/.codex",
-            "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.opencode",
-            "target": "/home/ubuntu/.opencode",
-            "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.pi",
-            "target": "/home/ubuntu/.pi",
-            "type": "bind"
-        },
-        {
-            "source": "${localEnv:HOME}/.kilocode",
-            "target": "/home/ubuntu/.kilocode",
-            "type": "bind"
         }
     ],
     "customizations": {
@@ -134,7 +89,7 @@
         }
     },
     "initializeCommand": {
-        "folder": "mkdir --parents ${localEnv:HOME}/.ssh ${localEnv:HOME}/.rust ${localEnv:HOME}/.config ${localEnv:HOME}/.docker ${localEnv:HOME}/.claude ${localEnv:HOME}/.gemini ${localEnv:HOME}/.codex ${localEnv:HOME}/.copilot ${localEnv:HOME}/.omp ${localEnv:HOME}/.hermes ${localEnv:HOME}/.opencode ${localEnv:HOME}/.pi ${localEnv:HOME}/.kilocode",
+        "folder": "mkdir --parents ${localEnv:HOME}/.ssh ${localEnv:HOME}/.rust ${localEnv:HOME}/.config ${localEnv:HOME}/.docker",
         "file": "touch ${localEnv:HOME}/.gitconfig environment/secrets.env"
     }
 }
