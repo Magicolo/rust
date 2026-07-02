@@ -2,7 +2,7 @@
     "name": "rust",
     "dockerComposeFile": "docker-compose.yml",
     "service": "develop",
-    "workspaceFolder": "/project",
+    "workspaceFolder": "/projects",
     "remoteEnv": {
         // General
         "COMPOSE_BAKE": "1",
@@ -76,6 +76,7 @@
                     "warning"
                 ],
                 "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)|todo!|unimplemented!",
+                "todo-tree.ripgrep": "/usr/bin/rg",
                 // Rust
                 "rust-analyzer.check.command": "clippy",
                 "rust-analyzer.cargo.extraEnv": {
@@ -90,6 +91,6 @@
     },
     "initializeCommand": {
         "folder": "mkdir --parents ${localEnv:HOME}/.ssh ${localEnv:HOME}/.rust ${localEnv:HOME}/.config ${localEnv:HOME}/.docker",
-        "file": "touch ${localEnv:HOME}/.gitconfig environment/secrets.env"
+        "file": "touch ${localEnv:HOME}/.gitconfig"
     }
 }
